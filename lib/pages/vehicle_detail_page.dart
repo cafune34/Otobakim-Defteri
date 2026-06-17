@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../database/database_helper.dart';
 import '../models/vehicle.dart';
+import 'expense_records_page.dart';
 import 'maintenance_records_page.dart';
 import 'vehicle_form_page.dart';
 
@@ -132,6 +133,15 @@ class _VehicleDetailPageState extends State<VehicleDetailPage> {
     );
   }
 
+  void _openExpenseRecords() {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (context) => ExpenseRecordsPage(initialVehicleId: _vehicle.id),
+      ),
+    );
+  }
+
   void _closePage() {
     Navigator.pop(context, _hasChanges);
   }
@@ -235,6 +245,12 @@ class _VehicleDetailPageState extends State<VehicleDetailPage> {
                 onPressed: _vehicle.id == null ? null : _openMaintenanceRecords,
                 icon: const Icon(Icons.car_repair),
                 label: const Text('Bakım Kayıtları'),
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                onPressed: _vehicle.id == null ? null : _openExpenseRecords,
+                icon: const Icon(Icons.receipt_long),
+                label: const Text('Masraf Kayıtları'),
               ),
               const SizedBox(height: 10),
               FilledButton.icon(
