@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../database/database_helper.dart';
 import '../models/vehicle.dart';
+import 'maintenance_records_page.dart';
 import 'vehicle_form_page.dart';
 
 class VehicleDetailPage extends StatefulWidget {
@@ -121,6 +122,16 @@ class _VehicleDetailPageState extends State<VehicleDetailPage> {
     }
   }
 
+  void _openMaintenanceRecords() {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (context) =>
+            MaintenanceRecordsPage(initialVehicleId: _vehicle.id),
+      ),
+    );
+  }
+
   void _closePage() {
     Navigator.pop(context, _hasChanges);
   }
@@ -220,6 +231,12 @@ class _VehicleDetailPageState extends State<VehicleDetailPage> {
                 value: _formatCreatedAt(_vehicle.createdAt),
               ),
               const SizedBox(height: 16),
+              OutlinedButton.icon(
+                onPressed: _vehicle.id == null ? null : _openMaintenanceRecords,
+                icon: const Icon(Icons.car_repair),
+                label: const Text('Bakım Kayıtları'),
+              ),
+              const SizedBox(height: 10),
               FilledButton.icon(
                 onPressed: _isDeleting ? null : _editVehicle,
                 icon: const Icon(Icons.edit),
