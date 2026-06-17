@@ -40,32 +40,56 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 12),
               LayoutBuilder(
                 builder: (context, constraints) {
-                  final crossAxisCount = constraints.maxWidth < 640 ? 1 : 3;
+                  const summaryCards = [
+                    AppSummaryCard(
+                      title: 'Araçlar',
+                      value: '0',
+                      icon: Icons.directions_car,
+                    ),
+                    AppSummaryCard(
+                      title: 'Bakımlar',
+                      value: '0',
+                      icon: Icons.build,
+                    ),
+                    AppSummaryCard(
+                      title: 'Masraflar',
+                      value: '0 TL',
+                      icon: Icons.payments,
+                    ),
+                  ];
+
+                  if (constraints.maxWidth < 640) {
+                    return const Column(
+                      children: [
+                        AppSummaryCard(
+                          title: 'Araçlar',
+                          value: '0',
+                          icon: Icons.directions_car,
+                        ),
+                        SizedBox(height: 12),
+                        AppSummaryCard(
+                          title: 'Bakımlar',
+                          value: '0',
+                          icon: Icons.build,
+                        ),
+                        SizedBox(height: 12),
+                        AppSummaryCard(
+                          title: 'Masraflar',
+                          value: '0 TL',
+                          icon: Icons.payments,
+                        ),
+                      ],
+                    );
+                  }
 
                   return GridView.count(
-                    crossAxisCount: crossAxisCount,
+                    crossAxisCount: 3,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: crossAxisCount == 1 ? 3.2 : 1.2,
+                    childAspectRatio: 2.4,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      AppSummaryCard(
-                        title: 'Araçlar',
-                        value: '0',
-                        icon: Icons.directions_car,
-                      ),
-                      AppSummaryCard(
-                        title: 'Bakımlar',
-                        value: '0',
-                        icon: Icons.build,
-                      ),
-                      AppSummaryCard(
-                        title: 'Masraflar',
-                        value: '0 TL',
-                        icon: Icons.payments,
-                      ),
-                    ],
+                    children: summaryCards,
                   );
                 },
               ),
