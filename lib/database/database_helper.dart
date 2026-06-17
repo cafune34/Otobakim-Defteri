@@ -206,6 +206,14 @@ class DatabaseHelper {
     return _readTotal(result);
   }
 
+  Future<double> getTotalMaintenanceCost() async {
+    final db = await database;
+    final result = await db.rawQuery(
+      'SELECT SUM($columnCost) AS total FROM $maintenanceRecordsTable',
+    );
+    return _readTotal(result);
+  }
+
   Future<int> insertExpenseRecord(ExpenseRecord record) async {
     final db = await database;
     return db.insert(expenseRecordsTable, record.toMap());
@@ -259,6 +267,14 @@ class DatabaseHelper {
       WHERE $columnVehicleId = ?
       ''',
       [vehicleId],
+    );
+    return _readTotal(result);
+  }
+
+  Future<double> getTotalExpenseAmount() async {
+    final db = await database;
+    final result = await db.rawQuery(
+      'SELECT SUM($columnAmount) AS total FROM $expenseRecordsTable',
     );
     return _readTotal(result);
   }
