@@ -10,6 +10,7 @@ class SplashPage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
+      backgroundColor: const Color(0xFF071A24),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -17,12 +18,31 @@ class SplashPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  Icons.directions_car_filled,
-                  size: 88,
-                  color: colorScheme.primary,
+                Container(
+                  width: 132,
+                  height: 132,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0E3342),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: colorScheme.primary.withValues(alpha: 0.42),
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: colorScheme.primary.withValues(alpha: 0.18),
+                        blurRadius: 28,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.directions_car_filled,
+                    size: 76,
+                    color: colorScheme.primary,
+                  ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 28),
                 Text(
                   'OtoBakım Defteri',
                   textAlign: TextAlign.center,
@@ -33,7 +53,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Bakım ve masraflarını düzenli takip et.',
+                  'Araç bakım ve masraflarını tek yerde takip et.',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: colorScheme.onSurfaceVariant,
@@ -41,6 +61,12 @@ class SplashPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 FilledButton(
+                  style: FilledButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 14,
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,

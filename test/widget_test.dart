@@ -8,7 +8,7 @@ void main() {
 
     expect(find.text('OtoBakım Defteri'), findsOneWidget);
     expect(
-      find.text('Bakım ve masraflarını düzenli takip et.'),
+      find.text('Araç bakım ve masraflarını tek yerde takip et.'),
       findsOneWidget,
     );
     expect(find.text('Başla'), findsOneWidget);
